@@ -13,7 +13,7 @@ En este repositorio se encuentran los proyectos que he desarrollado a lo largo d
 
 A continuación, pueden explorar las carpetas de los proyectos integrados incluidos:
 
-### 1 Dron con ESP32-C3
+### Dron con ESP32-C3
 * **Descripción:** Proyecto integrador universitario enfocado en el diseño, ensamblaje y calibración de un dron controlado mediante el microcontrolador ESP32-C3. Implementa lógica de control para motores, lectura de sensores en tiempo real y configuración de circuitos.
 * **Tecnologías:** C, ESP32-C3, Protocolos de conectividad, Sensores de estabilidad.
 
