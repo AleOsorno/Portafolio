@@ -7,7 +7,7 @@ En este repositorio se encuentran los proyectos que he desarrollado a lo largo d
 # Herramientas Destacadas
 * **Hardware & Embebidos:** ESP32, ESP32-C3, ESP32-S3, Microcontroladores PIC (16F877A / 16F84), Sensores, Servomotores, Circuitos de Potencia.
 * **Lenguajes de Programación:** C, Java, Python, JavaScript, HTML5, CSS3, SQL.
-* **Software:** Microsfot Excel, PowerPoint, Word.
+* **Software:** Microsoft Excel, PowerPoint, Word.
 
 ## Proyectos Destacados
 
