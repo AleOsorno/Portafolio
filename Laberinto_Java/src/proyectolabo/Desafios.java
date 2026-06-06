@@ -1,251 +1,214 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package proyectolabo;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.Timer;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.GroupLayout.Alignment;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
+import org.netbeans.lib.awtextra.AbsoluteLayout;
 
-/**
- *
- * @author alexo
- */
-public class Desafios extends javax.swing.JDialog {
+public class Desafios extends JDialog {
+   private String pregunta;
+   private int opCorrecta;
+   private int tiempo;
+   private String[] op;
+   private boolean acierto = false;
+   private ButtonGroup group = new ButtonGroup();
+   private JButton Enviar;
+   private JRadioButton Op1;
+   private JRadioButton Op2;
+   private JRadioButton Op3;
+   private JRadioButton Op4;
+   private JLabel Pregunta;
+   private JLabel jLabel1;
+   private JLabel jLabel2;
+   private JLabel jLabel3;
+   private JPanel jPanel1;
 
-    /**
-     * Creates new form Desafios
-     */
-    
-    private String pregunta;
-    private int opCorrecta;
-    private int tiempo;
-    private String[] op;
-    private boolean acierto = false;
-    private ButtonGroup group = new ButtonGroup();
-    
-    public Desafios(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        setLocationRelativeTo(null);
-    }
-    
-    public Desafios(java.awt.Frame parent, boolean modal, String pregunta, int opCorrecta, int tiempo, String[] op) {
-        super(parent, modal);
-        initComponents();
-        
-        //Inicializamos las variables
-        this.pregunta = pregunta;
-        this.opCorrecta = opCorrecta;
-        this.tiempo = tiempo;
-        this.op = op;
-        this.group.add(Op1);
-        this.group.add(Op2);
-        this.group.add(Op3);
-        this.group.add(Op4);
-        
-        // Establecer la pregunta y las opciones
-        this.setPregunta();
-        this.setOp();
-        
-        setLocationRelativeTo(null);
-        
-        Timer timer = new Timer(tiempo * 1000, new ActionListener() {//creamos un temporizador
-            public void actionPerformed(ActionEvent e) {
-                acierto = false;
-                dispose();
+   public Desafios(Frame parent, boolean modal) {
+      super(parent, modal);
+      this.initComponents();
+      this.setLocationRelativeTo((Component)null);
+   }
+
+   public Desafios(Frame parent, boolean modal, String pregunta, int opCorrecta, int tiempo, String[] op) {
+      super(parent, modal);
+      this.initComponents();
+      this.pregunta = pregunta;
+      this.opCorrecta = opCorrecta;
+      this.tiempo = tiempo;
+      this.op = op;
+      this.group.add(this.Op1);
+      this.group.add(this.Op2);
+      this.group.add(this.Op3);
+      this.group.add(this.Op4);
+      this.setPregunta();
+      this.setOp();
+      this.setLocationRelativeTo((Component)null);
+      Timer timer = new Timer(tiempo * 1000, new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            Desafios.this.acierto = false;
+            Desafios.this.dispose();
+         }
+      });
+      timer.setRepeats(false);
+      timer.start();
+   }
+
+   private void setPregunta() {
+      this.Pregunta.setText(this.pregunta);
+   }
+
+   private void setOp() {
+      this.Op1.setText(this.op[0]);
+      this.Op2.setText(this.op[1]);
+      this.Op3.setText(this.op[2]);
+      this.Op4.setText(this.op[3]);
+   }
+
+   public boolean isAcierto() {
+      return this.acierto;
+   }
+
+   private void initComponents() {
+      this.jPanel1 = new JPanel();
+      this.jLabel1 = new JLabel();
+      this.jLabel3 = new JLabel();
+      this.Pregunta = new JLabel();
+      this.Op1 = new JRadioButton();
+      this.Op2 = new JRadioButton();
+      this.Op3 = new JRadioButton();
+      this.Op4 = new JRadioButton();
+      this.Enviar = new JButton();
+      this.jLabel2 = new JLabel();
+      this.setDefaultCloseOperation(2);
+      this.setTitle("Desafio");
+      this.jPanel1.setLayout(new AbsoluteLayout());
+      this.jPanel1.add(this.jLabel1, new AbsoluteConstraints(27, 22, -1, -1));
+      this.jLabel3.setHorizontalAlignment(0);
+      this.jLabel3.setIcon(new ImageIcon(this.getClass().getResource("/proyectolabo/DesafioImagen/desafio.png")));
+      this.jPanel1.add(this.jLabel3, new AbsoluteConstraints(0, 20, 600, -1));
+      this.Pregunta.setFont(new Font("Arial", 1, 14));
+      this.Pregunta.setForeground(new Color(255, 255, 255));
+      this.Pregunta.setHorizontalAlignment(0);
+      this.Pregunta.setText("jLabel4");
+      this.jPanel1.add(this.Pregunta, new AbsoluteConstraints(321, 126, 260, 190));
+      this.Op1.setFont(new Font("Arial Black", 1, 12));
+      this.Op1.setForeground(new Color(255, 255, 255));
+      this.Op1.setText("Op1");
+      this.Op1.setOpaque(false);
+      this.jPanel1.add(this.Op1, new AbsoluteConstraints(40, 130, 270, -1));
+      this.Op2.setFont(new Font("Arial Black", 1, 12));
+      this.Op2.setForeground(new Color(255, 255, 255));
+      this.Op2.setText("Op2");
+      this.Op2.setOpaque(false);
+      this.jPanel1.add(this.Op2, new AbsoluteConstraints(40, 170, 270, -1));
+      this.Op3.setFont(new Font("Arial Black", 1, 12));
+      this.Op3.setForeground(new Color(255, 255, 255));
+      this.Op3.setText("Op3");
+      this.Op3.setOpaque(false);
+      this.jPanel1.add(this.Op3, new AbsoluteConstraints(40, 210, 270, -1));
+      this.Op4.setFont(new Font("Arial Black", 1, 12));
+      this.Op4.setForeground(new Color(255, 255, 255));
+      this.Op4.setText("Op4");
+      this.Op4.setOpaque(false);
+      this.jPanel1.add(this.Op4, new AbsoluteConstraints(40, 250, 270, -1));
+      this.Enviar.setIcon(new ImageIcon(this.getClass().getResource("/proyectolabo/DesafioImagen/EnviarButton.png")));
+      this.Enviar.setBorderPainted(false);
+      this.Enviar.setContentAreaFilled(false);
+      this.Enviar.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent evt) {
+            Desafios.this.EnviarActionPerformed(evt);
+         }
+      });
+      this.jPanel1.add(this.Enviar, new AbsoluteConstraints(100, 280, -1, -1));
+      this.jLabel2.setIcon(new ImageIcon(this.getClass().getResource("/proyectolabo/DesafioImagen/DesafioBackground.gif")));
+      this.jPanel1.add(this.jLabel2, new AbsoluteConstraints(0, 0, -1, -1));
+      GroupLayout layout = new GroupLayout(this.getContentPane());
+      this.getContentPane().setLayout(layout);
+      layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addComponent(this.jPanel1, -1, -1, 32767));
+      layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addComponent(this.jPanel1, -1, -1, 32767));
+      this.pack();
+   }
+
+   private void EnviarActionPerformed(ActionEvent evt) {
+      if (this.Op1.isSelected()) {
+         if (this.opCorrecta == 0) {
+            this.acierto = true;
+         } else {
+            this.acierto = false;
+         }
+      } else if (this.Op2.isSelected()) {
+         if (this.opCorrecta == 1) {
+            this.acierto = true;
+         } else {
+            this.acierto = false;
+         }
+      } else if (this.Op3.isSelected()) {
+         if (this.opCorrecta == 2) {
+            this.acierto = true;
+         } else {
+            this.acierto = false;
+         }
+      } else if (this.Op4.isSelected()) {
+         if (this.opCorrecta == 3) {
+            this.acierto = true;
+         } else {
+            this.acierto = false;
+         }
+      }
+
+      this.dispose();
+   }
+
+   public static void main(String[] args) {
+      try {
+         for(UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+               UIManager.setLookAndFeel(info.getClassName());
+               break;
             }
-        });
-        timer.setRepeats(false);
-        timer.start();
-    }
-    
-    private void setPregunta(){
-        this.Pregunta.setText(pregunta);
-    }
-    
-    private void setOp(){
-        this.Op1.setText(op[0]);
-        this.Op2.setText(op[1]);
-        this.Op3.setText(op[2]);
-        this.Op4.setText(op[3]);
-    }
-    
-    public boolean isAcierto() {
-        return acierto;
-    }
+         }
+      } catch (ClassNotFoundException ex) {
+         Logger.getLogger(Desafios.class.getName()).log(Level.SEVERE, (String)null, ex);
+      } catch (InstantiationException ex) {
+         Logger.getLogger(Desafios.class.getName()).log(Level.SEVERE, (String)null, ex);
+      } catch (IllegalAccessException ex) {
+         Logger.getLogger(Desafios.class.getName()).log(Level.SEVERE, (String)null, ex);
+      } catch (UnsupportedLookAndFeelException ex) {
+         Logger.getLogger(Desafios.class.getName()).log(Level.SEVERE, (String)null, ex);
+      }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        Pregunta = new javax.swing.JLabel();
-        Op1 = new javax.swing.JRadioButton();
-        Op2 = new javax.swing.JRadioButton();
-        Op3 = new javax.swing.JRadioButton();
-        Op4 = new javax.swing.JRadioButton();
-        Enviar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Desafio");
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 22, -1, -1));
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectolabo/DesafioImagen/desafio.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 600, -1));
-
-        Pregunta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        Pregunta.setForeground(new java.awt.Color(255, 255, 255));
-        Pregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Pregunta.setText("jLabel4");
-        jPanel1.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 126, 260, 190));
-
-        Op1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        Op1.setForeground(new java.awt.Color(255, 255, 255));
-        Op1.setText("Op1");
-        Op1.setOpaque(false);
-        jPanel1.add(Op1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 270, -1));
-
-        Op2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        Op2.setForeground(new java.awt.Color(255, 255, 255));
-        Op2.setText("Op2");
-        Op2.setOpaque(false);
-        jPanel1.add(Op2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 270, -1));
-
-        Op3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        Op3.setForeground(new java.awt.Color(255, 255, 255));
-        Op3.setText("Op3");
-        Op3.setOpaque(false);
-        jPanel1.add(Op3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 270, -1));
-
-        Op4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        Op4.setForeground(new java.awt.Color(255, 255, 255));
-        Op4.setText("Op4");
-        Op4.setOpaque(false);
-        jPanel1.add(Op4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 270, -1));
-
-        Enviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectolabo/DesafioImagen/EnviarButton.png"))); // NOI18N
-        Enviar.setBorderPainted(false);
-        Enviar.setContentAreaFilled(false);
-        Enviar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnviarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectolabo/DesafioImagen/DesafioBackground.gif"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarActionPerformed
-        // TODO add your handling code here:
-        if (Op1.isSelected()) {//validamos que la opcion elegita por esl usuario sea correcta
-            if (opCorrecta == 0) {
-                acierto = true;
-            } else {
-                acierto = false;
-            }
-        } else if (Op2.isSelected()) {
-            if (opCorrecta == 1) {
-                acierto = true;
-            } else {
-                acierto = false;
-            }
-        } else if (Op3.isSelected()) {
-            if (opCorrecta == 2) {
-                acierto = true;
-            } else {
-                acierto = false;
-            }
-        } else if (Op4.isSelected()) {
-            if (opCorrecta == 3) {
-                acierto = true;
-            } else {
-                acierto = false;
-            }
-        }
-        this.dispose();
-    }//GEN-LAST:event_EnviarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Desafios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Desafios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Desafios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Desafios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Desafios dialog = new Desafios(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Enviar;
-    private javax.swing.JRadioButton Op1;
-    private javax.swing.JRadioButton Op2;
-    private javax.swing.JRadioButton Op3;
-    private javax.swing.JRadioButton Op4;
-    private javax.swing.JLabel Pregunta;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
+      EventQueue.invokeLater(new Runnable() {
+         public void run() {
+            Desafios dialog = new Desafios(new JFrame(), true);
+            dialog.addWindowListener(new WindowAdapter() {
+               public void windowClosing(WindowEvent e) {
+                  System.exit(0);
+               }
+            });
+            dialog.setVisible(true);
+         }
+      });
+   }
 }

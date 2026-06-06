@@ -1,533 +1,418 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package proyectolabo;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.text.*;
-import java.util.*;
-import javax.swing.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
-/**
- *
- * @author alexo
- */
-public class Laberinto extends javax.swing.JFrame implements KeyListener{
+public class Laberinto extends JFrame implements KeyListener {
+   private JButton[][] matrizBotones;
+   private Jugador jugador;
+   private Control control;
+   private Control2 control2;
+   private boolean teclaW;
+   private boolean teclaZ;
+   private boolean teclaQ;
+   private boolean teclaV;
+   private boolean laberinto2 = false;
+   private Datos datos;
+   private String dificultad;
+   private int[][] mapa;
+   private String fecha;
+   private String horaI;
+   private JLabel ContadorPuntuacion;
+   private JLabel ContadorVidas;
+   private JButton MenuButton;
+   private JPanel PanelCentro;
+   private JLabel jLabel1;
+   private JLabel jLabel2;
+   private JLabel jLabel3;
+   private JPanel jPanel1;
+   private JPanel jPanel2;
 
-    /**
-     * Creates new form Laberinto
-     */
-    private JButton[][] matrizBotones;
-    private Jugador jugador;
-    private Control control;
-    private Control2 control2;
-    private boolean teclaW;
-    private boolean teclaZ;
-    private boolean teclaQ;
-    private boolean teclaV;
-    private boolean laberinto2 = false;
-    private Datos datos;
-    private String dificultad;
-    private int[][] mapa;
-    private String fecha;
-    private String horaI;
-    
-    public Laberinto() {
-        initComponents();
-        setLocationRelativeTo(null);
-        configurarEventosVentana(); 
-    }
-    
-    public Laberinto(Jugador jugador, String dificultad, Datos datos) {//constructor para cuando iniciamos por primera vez el juego
-        initComponents();
-        this.addKeyListener(this);
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.jugador = jugador;
-        this.datos = datos;
-        this.dificultad = dificultad;
-        this.teclaW = false;
-        this.teclaZ = false;
-        this.teclaQ = false;
-        this.teclaV = false;
-        
-        Date fecha = new Date();//obtenemos la fecha y hora en los que se inicio la partida
-        DateFormat formato = new SimpleDateFormat("dd-MM-YYYY");
-        this.fecha = formato.format(fecha);
-        Date hora = new Date();
-        DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss a");
-        this.horaI = formatoHora.format(hora);
-        
-        if(this.dificultad.equals("Dificil")){//revisamos la dificultad y creamos los mapas dependiendo de esta
-            this.matrizBotones = new JButton[20][20];
-            setSize(1000, 1000);  
-            AnadirMatrizBotones(20);
-        }else{
-            this.matrizBotones = new JButton[10][10];
-            setSize(900,900);
-            AnadirMatrizBotones(10);
-        }
-        
-        jugador.setVidas(3);
-        jugador.setPuntos(50);
-        
-        valores();//mostramos las vidas y puntos en el JFrame
-        
-        setLocationRelativeTo(null);
-        configurarEventosVentana();//configuramos los estados de la ventana
-    }
-    
-    public Laberinto(Jugador jugador, String dificultad, Datos datos, int[][] mapa, String fecha, String hora, 
-            boolean teclaW, boolean teclaZ, boolean teclaQ, boolean teclaV) {//constructor para cuando el juego ya fue empezado pero pausado
-        initComponents();
-        this.addKeyListener(this);
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.jugador = jugador;
-        this.datos = datos;
-        this.dificultad = dificultad;
-        this.mapa = mapa;
-        this.horaI = hora;
-        this.fecha = fecha;
-        this.teclaW = teclaW;
-        this.teclaZ = teclaZ;
-        this.teclaQ = teclaQ;
-        this.teclaV = teclaV;
-        
-        if(this.dificultad.equals("Dificil")){
-            this.matrizBotones = new JButton[20][20];
-            setSize(1000, 1000);  
-            AnadirMatrizBotones(20);
-        }else{
-            this.matrizBotones = new JButton[10][10];
-            setSize(900,900);
-            AnadirMatrizBotones(10);
-        }
-        
-        valores();
-        
-        setLocationRelativeTo(null);
-        configurarEventosVentana(); 
-    }
-    
-    private void AnadirMatrizBotones(int numero){//añadimos la matriz de botones
-        PanelCentro.setLayout(new GridLayout(numero,numero,0,0));
-        for (int i = 0; i < numero; i++) {
-            for (int j = 0; j < numero; j++) {
-                matrizBotones[i][j] = new JButton(" ");
-                matrizBotones[i][j].setPreferredSize(new Dimension(40, 40));
-                matrizBotones[i][j].setMinimumSize(new Dimension(40, 40));
-                matrizBotones[i][j].setMaximumSize(new Dimension(40, 40)); 
-                matrizBotones[i][j].setBorderPainted(false);
-                matrizBotones[i][j].setContentAreaFilled(false);
-                matrizBotones[i][j].setFocusPainted(false);
-                matrizBotones[i][j].setOpaque(false);
-                PanelCentro.add(matrizBotones[i][j]);
+   public Laberinto() {
+      this.initComponents();
+      this.setLocationRelativeTo((Component)null);
+      this.configurarEventosVentana();
+   }
+
+   public Laberinto(Jugador jugador, String dificultad, Datos datos) {
+      this.initComponents();
+      this.addKeyListener(this);
+      this.setFocusable(true);
+      this.requestFocusInWindow();
+      this.jugador = jugador;
+      this.datos = datos;
+      this.dificultad = dificultad;
+      this.teclaW = false;
+      this.teclaZ = false;
+      this.teclaQ = false;
+      this.teclaV = false;
+      Date fecha = new Date();
+      DateFormat formato = new SimpleDateFormat("dd-MM-YYYY");
+      this.fecha = formato.format(fecha);
+      Date hora = new Date();
+      DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss a");
+      this.horaI = formatoHora.format(hora);
+      if (this.dificultad.equals("Dificil")) {
+         this.matrizBotones = new JButton[20][20];
+         this.setSize(1000, 1000);
+         this.AnadirMatrizBotones(20);
+      } else {
+         this.matrizBotones = new JButton[10][10];
+         this.setSize(900, 900);
+         this.AnadirMatrizBotones(10);
+      }
+
+      jugador.setVidas(3);
+      jugador.setPuntos(50);
+      this.valores();
+      this.setLocationRelativeTo((Component)null);
+      this.configurarEventosVentana();
+   }
+
+   public Laberinto(Jugador jugador, String dificultad, Datos datos, int[][] mapa, String fecha, String hora, boolean teclaW, boolean teclaZ, boolean teclaQ, boolean teclaV) {
+      this.initComponents();
+      this.addKeyListener(this);
+      this.setFocusable(true);
+      this.requestFocusInWindow();
+      this.jugador = jugador;
+      this.datos = datos;
+      this.dificultad = dificultad;
+      this.mapa = mapa;
+      this.horaI = hora;
+      this.fecha = fecha;
+      this.teclaW = teclaW;
+      this.teclaZ = teclaZ;
+      this.teclaQ = teclaQ;
+      this.teclaV = teclaV;
+      if (this.dificultad.equals("Dificil")) {
+         this.matrizBotones = new JButton[20][20];
+         this.setSize(1000, 1000);
+         this.AnadirMatrizBotones(20);
+      } else {
+         this.matrizBotones = new JButton[10][10];
+         this.setSize(900, 900);
+         this.AnadirMatrizBotones(10);
+      }
+
+      this.valores();
+      this.setLocationRelativeTo((Component)null);
+      this.configurarEventosVentana();
+   }
+
+   private void AnadirMatrizBotones(int numero) {
+      this.PanelCentro.setLayout(new GridLayout(numero, numero, 0, 0));
+
+      for(int i = 0; i < numero; ++i) {
+         for(int j = 0; j < numero; ++j) {
+            this.matrizBotones[i][j] = new JButton(" ");
+            this.matrizBotones[i][j].setPreferredSize(new Dimension(40, 40));
+            this.matrizBotones[i][j].setMinimumSize(new Dimension(40, 40));
+            this.matrizBotones[i][j].setMaximumSize(new Dimension(40, 40));
+            this.matrizBotones[i][j].setBorderPainted(false);
+            this.matrizBotones[i][j].setContentAreaFilled(false);
+            this.matrizBotones[i][j].setFocusPainted(false);
+            this.matrizBotones[i][j].setOpaque(false);
+            this.PanelCentro.add(this.matrizBotones[i][j]);
+         }
+      }
+
+      if (numero == 20) {
+         if (this.mapa == null) {
+            this.control2 = new Control2(this.matrizBotones, this.jugador, this.datos, this.fecha, this.horaI);
+            this.laberinto2 = true;
+            this.control2.MostrarMapa();
+         } else {
+            this.control2 = new Control2(this.matrizBotones, this.jugador, this.datos, this.fecha, this.horaI);
+            this.control2.setMapa(this.mapa);
+            this.laberinto2 = true;
+            this.control2.MostrarMapa();
+         }
+      } else if (this.mapa == null) {
+         this.control = new Control(this.matrizBotones, this.jugador, this.datos, this.fecha, this.horaI);
+         this.laberinto2 = false;
+         this.control.MostrarMapa();
+      } else {
+         this.control = new Control(this.matrizBotones, this.jugador, this.datos, this.fecha, this.horaI);
+         this.control.setMapa(this.mapa);
+         this.laberinto2 = false;
+         this.control.MostrarMapa();
+      }
+
+   }
+
+   private void configurarEventosVentana() {
+      this.setDefaultCloseOperation(2);
+      this.addWindowListener(new WindowAdapter() {
+         public void windowDeactivated(WindowEvent e) {
+            if (!Laberinto.this.laberinto2) {
+               if (!Laberinto.this.control.isCerrando()) {
+                  Laberinto.this.mostrarPausa();
+               }
+            } else if (!Laberinto.this.control2.isCerrando()) {
+               Laberinto.this.mostrarPausa();
             }
-        }
-        
-        if(numero == 20){
-            if(mapa == null){
-               this.control2 = new Control2(matrizBotones,jugador,datos,fecha,horaI);
-               this.laberinto2 = true;
-               control2.MostrarMapa(); 
-            }else{
-               this.control2 = new Control2(matrizBotones,jugador,datos,fecha,horaI);
-               control2.setMapa(this.mapa);
-               this.laberinto2 = true;
-               control2.MostrarMapa(); 
-            }
-            
-        }else{
-            if(mapa == null){
-                this.control = new Control(matrizBotones,jugador,datos,fecha,horaI);
-                this.laberinto2 = false;
-                control.MostrarMapa();
-            }else{
-                this.control = new Control(matrizBotones,jugador,datos,fecha,horaI);
-                control.setMapa(this.mapa);
-                this.laberinto2 = false;
-                control.MostrarMapa();
-            }
-            
-        }
-    }
-    
-    private void configurarEventosVentana() {
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        addWindowListener(new java.awt.event.WindowAdapter() {
+         }
 
-            @Override // si se pierde el foco de la ventana llama al menu de pausa      
-            public void windowDeactivated(java.awt.event.WindowEvent e) {
-                if(!laberinto2){
-                    if(!control.isCerrando()){
-                        mostrarPausa();
-                    }
-                }else{
-                    if(!control2.isCerrando()){
-                        mostrarPausa();
-                    }
-                }
+         public void windowIconified(WindowEvent e) {
+            if (!Laberinto.this.laberinto2) {
+               if (!Laberinto.this.control.isCerrando()) {
+                  Laberinto.this.mostrarPausa();
+               }
+            } else if (!Laberinto.this.control2.isCerrando()) {
+               Laberinto.this.mostrarPausa();
             }
 
-            @Override // si se minimiza la ventana llama al menu de pause    
-            public void windowIconified(java.awt.event.WindowEvent e) {
-                if(!laberinto2){
-                    if(!control.isCerrando()){
-                        mostrarPausa();
-                    }
-                }else{
-                    if(!control2.isCerrando()){
-                        mostrarPausa();
-                    }
-                }
+         }
+      });
+   }
+
+   private void mostrarPausa() {
+      this.dispose();
+      if (this.laberinto2) {
+         Pausa dialog = new Pausa(this, true, this.jugador, this.datos, this.dificultad, this.control2.getMapa(), this.fecha, this.horaI, this.teclaW, this.teclaZ, this.teclaQ, this.teclaV);
+         dialog.setVisible(true);
+      } else {
+         Pausa dialog = new Pausa(this, true, this.jugador, this.datos, this.dificultad, this.control.getMapa(), this.fecha, this.horaI, this.teclaW, this.teclaZ, this.teclaQ, this.teclaV);
+         dialog.setVisible(true);
+      }
+
+   }
+
+   public void keyPressed(KeyEvent e) {
+      if (!this.laberinto2) {
+         if (e.getKeyCode() == 38) {
+            this.control.validarMovimiento(1);
+            this.valores();
+            if (this.control.isLoser() || this.control.isWinner()) {
+               this.dispose();
             }
-        });
-    }
-    
-    private void mostrarPausa() {
-        dispose();
-        if(laberinto2){
-            Pausa dialog = new Pausa(this, true,jugador,datos,dificultad,control2.getMapa(),fecha,horaI,this.teclaW,this.teclaZ,this.teclaQ,this.teclaV);
-            dialog.setVisible(true);
-        }else{
-            Pausa dialog = new Pausa(this, true,jugador,datos,dificultad,control.getMapa(),fecha,horaI,this.teclaW,this.teclaZ,this.teclaQ,this.teclaV);
-            dialog.setVisible(true);
-        }
-    }
-    
-    public void keyPressed(KeyEvent e) {//recibe y valida las teclas de movimiento
-        if(!this.laberinto2){
-            if (e.getKeyCode() == KeyEvent.VK_UP){
-                control.validarMovimiento(1);
-                valores();
+         }
 
-                if(control.isLoser() || control.isWinner()){
-                    dispose();
-                }
-            } 
-            if (e.getKeyCode() == KeyEvent.VK_DOWN){
-                control.validarMovimiento(2);
-                valores();
-
-                if(control.isLoser() || control.isWinner()){
-                    dispose();
-                }
-            } 
-            if (e.getKeyCode() == KeyEvent.VK_LEFT){
-                control.validarMovimiento(3);
-                valores();
-
-                if(control.isLoser() || control.isWinner()){
-                    dispose();
-                }
+         if (e.getKeyCode() == 40) {
+            this.control.validarMovimiento(2);
+            this.valores();
+            if (this.control.isLoser() || this.control.isWinner()) {
+               this.dispose();
             }
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-                control.validarMovimiento(4);
-                valores();
+         }
 
-                if(control.isLoser() || control.isWinner()){
-                    dispose();
-                }
+         if (e.getKeyCode() == 37) {
+            this.control.validarMovimiento(3);
+            this.valores();
+            if (this.control.isLoser() || this.control.isWinner()) {
+               this.dispose();
             }
-            if(e.getKeyCode() == KeyEvent.VK_W){
+         }
 
-                if(!teclaW){
-                    control.validarMovimiento(5);
-                    valores();
-
-                    if(control.isLoser() || control.isWinner()){
-                        dispose();
-                    }
-                    teclaW = true;
-                }
+         if (e.getKeyCode() == 39) {
+            this.control.validarMovimiento(4);
+            this.valores();
+            if (this.control.isLoser() || this.control.isWinner()) {
+               this.dispose();
             }
-            if(e.getKeyCode() == KeyEvent.VK_Z){
+         }
 
-                if(!teclaZ){
-                    control.validarMovimiento(6);
-                    valores();
-
-                    if(control.isLoser() || control.isWinner()){
-                        dispose();
-                    }
-                    teclaZ = true;
-                }
+         if (e.getKeyCode() == 87 && !this.teclaW) {
+            this.control.validarMovimiento(5);
+            this.valores();
+            if (this.control.isLoser() || this.control.isWinner()) {
+               this.dispose();
             }
-        }else{//laberinto 2 ------------------------------------------------------------------------------------------
-            if (e.getKeyCode() == KeyEvent.VK_UP){
-                control2.validarMovimiento(1);
-                valores();
 
-                if(control2.isLoser() || control2.isWinner()){
-                    dispose();
-                }
-            } 
-            if (e.getKeyCode() == KeyEvent.VK_DOWN){
-                control2.validarMovimiento(2);
-                valores();
+            this.teclaW = true;
+         }
 
-                if(control2.isLoser() || control2.isWinner()){
-                    dispose();
-                }
-            } 
-            if (e.getKeyCode() == KeyEvent.VK_LEFT){
-                control2.validarMovimiento(3);
-                valores();
-
-                if(control2.isLoser() || control2.isWinner()){
-                    dispose();
-                }
+         if (e.getKeyCode() == 90 && !this.teclaZ) {
+            this.control.validarMovimiento(6);
+            this.valores();
+            if (this.control.isLoser() || this.control.isWinner()) {
+               this.dispose();
             }
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-                control2.validarMovimiento(4);
-                valores();
 
-                if(control2.isLoser() || control2.isWinner()){
-                    dispose();
-                }
+            this.teclaZ = true;
+         }
+      } else {
+         if (e.getKeyCode() == 38) {
+            this.control2.validarMovimiento(1);
+            this.valores();
+            if (this.control2.isLoser() || this.control2.isWinner()) {
+               this.dispose();
             }
-            if(e.getKeyCode() == KeyEvent.VK_W){
+         }
 
-                if(!teclaW){
-                    control2.validarMovimiento(5);
-                    valores();
-
-                    if(control2.isLoser() || control2.isWinner()){
-                        dispose();
-                    }
-                    teclaW = true;
-                }
+         if (e.getKeyCode() == 40) {
+            this.control2.validarMovimiento(2);
+            this.valores();
+            if (this.control2.isLoser() || this.control2.isWinner()) {
+               this.dispose();
             }
-            if(e.getKeyCode() == KeyEvent.VK_Z){
+         }
 
-                if(!teclaZ){
-                    control2.validarMovimiento(6);
-                    valores();
-
-                    if(control2.isLoser() || control2.isWinner()){
-                        dispose();
-                    }
-                    teclaZ = true;
-                }
+         if (e.getKeyCode() == 37) {
+            this.control2.validarMovimiento(3);
+            this.valores();
+            if (this.control2.isLoser() || this.control2.isWinner()) {
+               this.dispose();
             }
-            if(e.getKeyCode() == KeyEvent.VK_Q){
+         }
 
-                if(!teclaQ){
-                    control2.validarMovimiento(7);
-                    valores();
-
-                    if(control2.isLoser() || control2.isWinner()){
-                        dispose();
-                    }
-                    teclaQ = true;
-                }
+         if (e.getKeyCode() == 39) {
+            this.control2.validarMovimiento(4);
+            this.valores();
+            if (this.control2.isLoser() || this.control2.isWinner()) {
+               this.dispose();
             }
-            if(e.getKeyCode() == KeyEvent.VK_V){
+         }
 
-                if(!teclaV){
-                    control2.validarMovimiento(8);
-                    valores();
-
-                    if(control2.isLoser() || control2.isWinner()){
-                        dispose();
-                    }
-                    teclaV = true;
-                }
+         if (e.getKeyCode() == 87 && !this.teclaW) {
+            this.control2.validarMovimiento(5);
+            this.valores();
+            if (this.control2.isLoser() || this.control2.isWinner()) {
+               this.dispose();
             }
-        }
-    }
-    
-    public void valores(){
-        ContadorVidas.setText(Integer.toString(jugador.getVidas()));
-        ContadorPuntuacion.setText(Integer.toString(jugador.getPuntos()));
-    }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+            this.teclaW = true;
+         }
 
-        jPanel1 = new javax.swing.JPanel();
-        PanelCentro = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        ContadorVidas = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        ContadorPuntuacion = new javax.swing.JLabel();
-        MenuButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Laberinto");
-        setPreferredSize(new java.awt.Dimension(900, 900));
-
-        PanelCentro.setLayout(new java.awt.GridLayout(1, 0));
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectolabo/LaberintoImagen/LaberintoLetras.png"))); // NOI18N
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectolabo/LaberintoImagen/Corazon.png"))); // NOI18N
-
-        ContadorVidas.setText("___");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectolabo/LaberintoImagen/Puntuacion.png"))); // NOI18N
-
-        ContadorPuntuacion.setText("___");
-
-        MenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectolabo/LaberintoImagen/MenuBarraButton-removebg-preview.png"))); // NOI18N
-        MenuButton.setBorderPainted(false);
-        MenuButton.setContentAreaFilled(false);
-        MenuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuButtonActionPerformed(evt);
+         if (e.getKeyCode() == 90 && !this.teclaZ) {
+            this.control2.validarMovimiento(6);
+            this.valores();
+            if (this.control2.isLoser() || this.control2.isWinner()) {
+               this.dispose();
             }
-        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ContadorVidas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(MenuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ContadorPuntuacion)
-                        .addGap(90, 90, 90))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ContadorPuntuacion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ContadorVidas, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(MenuButton, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
-        );
+            this.teclaZ = true;
+         }
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelCentro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PanelCentro, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuButtonActionPerformed
-        // TODO add your handling code here:
-        mostrarPausa();
-    }//GEN-LAST:event_MenuButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+         if (e.getKeyCode() == 81 && !this.teclaQ) {
+            this.control2.validarMovimiento(7);
+            this.valores();
+            if (this.control2.isLoser() || this.control2.isWinner()) {
+               this.dispose();
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Laberinto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Laberinto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Laberinto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Laberinto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Laberinto().setVisible(true);
+            this.teclaQ = true;
+         }
+
+         if (e.getKeyCode() == 86 && !this.teclaV) {
+            this.control2.validarMovimiento(8);
+            this.valores();
+            if (this.control2.isLoser() || this.control2.isWinner()) {
+               this.dispose();
             }
-        });
-    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ContadorPuntuacion;
-    private javax.swing.JLabel ContadorVidas;
-    private javax.swing.JButton MenuButton;
-    private javax.swing.JPanel PanelCentro;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    // End of variables declaration//GEN-END:variables
+            this.teclaV = true;
+         }
+      }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        
-    }
+   }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        
-    }
+   public void valores() {
+      this.ContadorVidas.setText(Integer.toString(this.jugador.getVidas()));
+      this.ContadorPuntuacion.setText(Integer.toString(this.jugador.getPuntos()));
+   }
+
+   private void initComponents() {
+      this.jPanel1 = new JPanel();
+      this.PanelCentro = new JPanel();
+      this.jPanel2 = new JPanel();
+      this.jLabel1 = new JLabel();
+      this.jLabel2 = new JLabel();
+      this.ContadorVidas = new JLabel();
+      this.jLabel3 = new JLabel();
+      this.ContadorPuntuacion = new JLabel();
+      this.MenuButton = new JButton();
+      this.setDefaultCloseOperation(3);
+      this.setTitle("Laberinto");
+      this.setPreferredSize(new Dimension(900, 900));
+      this.PanelCentro.setLayout(new GridLayout(1, 0));
+      this.jLabel1.setFont(new Font("Dialog", 1, 18));
+      this.jLabel1.setHorizontalAlignment(0);
+      this.jLabel1.setIcon(new ImageIcon(this.getClass().getResource("/proyectolabo/LaberintoImagen/LaberintoLetras.png")));
+      this.jLabel2.setIcon(new ImageIcon(this.getClass().getResource("/proyectolabo/LaberintoImagen/Corazon.png")));
+      this.ContadorVidas.setText("___");
+      this.jLabel3.setIcon(new ImageIcon(this.getClass().getResource("/proyectolabo/LaberintoImagen/Puntuacion.png")));
+      this.ContadorPuntuacion.setText("___");
+      this.MenuButton.setIcon(new ImageIcon(this.getClass().getResource("/proyectolabo/LaberintoImagen/MenuBarraButton-removebg-preview.png")));
+      this.MenuButton.setBorderPainted(false);
+      this.MenuButton.setContentAreaFilled(false);
+      this.MenuButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent evt) {
+            Laberinto.this.MenuButtonActionPerformed(evt);
+         }
+      });
+      GroupLayout jPanel2Layout = new GroupLayout(this.jPanel2);
+      this.jPanel2.setLayout(jPanel2Layout);
+      jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addComponent(this.jLabel1, -1, 424, 32767).addContainerGap()).addGroup(jPanel2Layout.createSequentialGroup().addGap(68, 68, 68).addComponent(this.jLabel2).addPreferredGap(ComponentPlacement.RELATED).addComponent(this.ContadorVidas).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(this.MenuButton, -1, -1, 32767).addPreferredGap(ComponentPlacement.RELATED).addComponent(this.jLabel3).addPreferredGap(ComponentPlacement.RELATED).addComponent(this.ContadorPuntuacion).addGap(90, 90, 90)))));
+      jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addComponent(this.jLabel1).addPreferredGap(ComponentPlacement.UNRELATED).addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addComponent(this.jLabel3).addGap(0, 0, 32767)).addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup().addGap(0, 0, 32767).addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING).addComponent(this.ContadorPuntuacion, Alignment.TRAILING).addComponent(this.ContadorVidas, Alignment.TRAILING).addComponent(this.jLabel2, Alignment.TRAILING).addComponent(this.MenuButton, Alignment.TRAILING)))).addContainerGap()));
+      GroupLayout jPanel1Layout = new GroupLayout(this.jPanel1);
+      this.jPanel1.setLayout(jPanel1Layout);
+      jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING).addComponent(this.PanelCentro, -1, -1, 32767).addComponent(this.jPanel2, -1, -1, 32767)).addContainerGap()));
+      jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(this.jPanel2, -2, -1, -2).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(this.PanelCentro, -1, 250, 32767).addContainerGap()));
+      GroupLayout layout = new GroupLayout(this.getContentPane());
+      this.getContentPane().setLayout(layout);
+      layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addComponent(this.jPanel1, -1, -1, 32767));
+      layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addComponent(this.jPanel1, -1, -1, 32767));
+      this.pack();
+   }
+
+   private void MenuButtonActionPerformed(ActionEvent evt) {
+      this.mostrarPausa();
+   }
+
+   public static void main(String[] args) {
+      try {
+         for(UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+               UIManager.setLookAndFeel(info.getClassName());
+               break;
+            }
+         }
+      } catch (ClassNotFoundException ex) {
+         Logger.getLogger(Laberinto.class.getName()).log(Level.SEVERE, (String)null, ex);
+      } catch (InstantiationException ex) {
+         Logger.getLogger(Laberinto.class.getName()).log(Level.SEVERE, (String)null, ex);
+      } catch (IllegalAccessException ex) {
+         Logger.getLogger(Laberinto.class.getName()).log(Level.SEVERE, (String)null, ex);
+      } catch (UnsupportedLookAndFeelException ex) {
+         Logger.getLogger(Laberinto.class.getName()).log(Level.SEVERE, (String)null, ex);
+      }
+
+      EventQueue.invokeLater(new Runnable() {
+         public void run() {
+            (new Laberinto()).setVisible(true);
+         }
+      });
+   }
+
+   public void keyTyped(KeyEvent e) {
+   }
+
+   public void keyReleased(KeyEvent e) {
+   }
 }

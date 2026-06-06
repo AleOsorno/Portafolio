@@ -1,105 +1,102 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyectolabo;
 
-/**
- *
- * @author alexo
- */
 public class Jugador {
-    
-    private Personaje personaje;
-    private int vidas;
-    private int puntos, puntuacionMax;
-    private String Nombre,edad, sexo, user, pass;
+   private Personaje personaje;
+   private int vidas;
+   private int puntos;
+   private int puntuacionMax;
+   private String Nombre;
+   private String edad;
+   private String sexo;
+   private String user;
+   private String pass;
 
-    public Jugador(String Nombre, String edad, String sexo, String user, String pass, int puntuacionMax) {
-        this.Nombre = Nombre;
-        this.edad = edad;
-        this.sexo = sexo;
-        this.user = user;
-        this.pass = pass;
-        this.puntuacionMax = puntuacionMax;
-        setVidas(3);
-        setPuntos(50);
-    }
-    
-    public void sumarPuntos(int cantidad){
-        puntos+=cantidad;
-    }
-    
-    public void sumarVidas(int cantidad){
-        vidas+=cantidad;
-    }
-    
-    public void restarPuntos(int cantidad){
-        if(puntos-cantidad >= 0){
-            puntos-=cantidad;
-        }else{
-            puntos = 0;
-        }
-    }
-    
-    public void restarVidas(int cantidad){
-        if(vidas-cantidad >= 0){
-            vidas-=cantidad;
-        }else{
-            vidas = 0;
-        }
-    }
+   public Jugador(String Nombre, String edad, String sexo, String user, String pass, int puntuacionMax) {
+      this.Nombre = Nombre;
+      this.edad = edad;
+      this.sexo = sexo;
+      this.user = user;
+      this.pass = pass;
+      this.puntuacionMax = puntuacionMax;
+      this.setVidas(3);
+      this.setPuntos(50);
+   }
 
-    public Personaje getPersonaje() {
-        return personaje;
-    }
-    
-    public String getUser() {
-        return user;
-    }
+   public void sumarPuntos(int cantidad) {
+      this.puntos += cantidad;
+   }
 
-    public String getPass() {
-        return pass;
-    }
+   public void sumarVidas(int cantidad) {
+      this.vidas += cantidad;
+   }
 
-    public String getNombre() {
-        return Nombre;
-    }
+   public void restarPuntos(int cantidad) {
+      if (this.puntos - cantidad >= 0) {
+         this.puntos -= cantidad;
+      } else {
+         this.puntos = 0;
+      }
 
-    public String getEdad() {
-        return edad;
-    }
+   }
 
-    public String getSexo() {
-        return sexo;
-    }
+   public void restarVidas(int cantidad) {
+      if (this.vidas - cantidad >= 0) {
+         this.vidas -= cantidad;
+      } else {
+         this.vidas = 0;
+      }
 
-    public int getPuntuacionMax() {
-        return puntuacionMax;
-    }
+   }
 
-    public void setPersonaje(Personaje personaje) {
-        this.personaje = personaje;
-    }
+   public Personaje getPersonaje() {
+      return this.personaje;
+   }
 
-    public int getVidas() {
-        return vidas;
-    }
+   public String getUser() {
+      return this.user;
+   }
 
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
-    }
+   public String getPass() {
+      return this.pass;
+   }
 
-    public int getPuntos() {
-        return puntos;
-    }
+   public String getNombre() {
+      return this.Nombre;
+   }
 
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
-    }
+   public String getEdad() {
+      return this.edad;
+   }
 
-    public void setPuntuacionMax(int puntuacionMax) {
-        this.puntuacionMax = puntuacionMax;
-    }
-    
+   public String getSexo() {
+      return this.sexo;
+   }
+
+   public int getPuntuacionMax() {
+      return this.puntuacionMax;
+   }
+
+   public void setPersonaje(Personaje personaje) {
+      this.personaje = personaje;
+   }
+
+   public int getVidas() {
+      return this.vidas;
+   }
+
+   public void setVidas(int vidas) {
+      this.vidas = vidas;
+   }
+
+   public int getPuntos() {
+      return this.puntos;
+   }
+
+   public void setPuntos(int puntos) {
+      this.puntos = puntos;
+   }
+
+   public void setPuntuacionMax(int puntuacionMax) {
+      this.puntuacionMax = puntuacionMax;
+   }
 }
