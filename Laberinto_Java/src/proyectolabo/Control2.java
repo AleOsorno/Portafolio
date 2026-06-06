@@ -604,13 +604,18 @@ public class Control2 {
                this.MapaLab[i][j].add((Component)this.animaciones.get(0), "Center");
                this.MapaLab[i][j].revalidate();
                this.MapaLab[i][j].repaint();
-               (new Timer(500, (e) -> {
-                  int numero = this.mapa[i - 1][j];
-                  this.mapa[i - 1][j] = this.mapa[i][j];
-                  this.mapa[i][j] = numero;
-                  this.MostrarMapa();
-                  ((Timer)e.getSource()).stop();
-               })).start();
+               
+               final int filaActual = i;
+               final int colActual = j;
+
+                (new Timer(500, (e) -> {
+                    int numero = this.mapa[filaActual - 1][colActual];
+                    this.mapa[filaActual - 1][colActual] = this.mapa[filaActual][colActual];
+                    this.mapa[filaActual][colActual] = numero;
+
+                    this.MostrarMapa();
+                    ((Timer)e.getSource()).stop();
+                })).start();
                return;
             }
          }
@@ -629,13 +634,18 @@ public class Control2 {
                this.MapaLab[i][j].add((Component)this.animaciones.get(0), "Center");
                this.MapaLab[i][j].revalidate();
                this.MapaLab[i][j].repaint();
-               (new Timer(500, (e) -> {
-                  int numero = this.mapa[i + 1][j];
-                  this.mapa[i + 1][j] = this.mapa[i][j];
-                  this.mapa[i][j] = numero;
-                  this.MostrarMapa();
-                  ((Timer)e.getSource()).stop();
-               })).start();
+               
+               final int filaActual = i;
+                final int colActual = j;
+
+                (new Timer(500, (e) -> {
+                    int numero = this.mapa[filaActual + 1][colActual];
+                    this.mapa[filaActual + 1][colActual] = this.mapa[filaActual][colActual];
+                    this.mapa[filaActual][colActual] = numero;
+
+                    this.MostrarMapa();
+                    ((Timer)e.getSource()).stop();
+                })).start();
                return;
             }
          }
@@ -654,14 +664,18 @@ public class Control2 {
                this.MapaLab[i][j].add((Component)this.animaciones.get(0), "Center");
                this.MapaLab[i][j].revalidate();
                this.MapaLab[i][j].repaint();
-               (new Timer(500, (e) -> {
-                  int numero = this.mapa[i][j - 1];
-                  this.mapa[i][j - 1] = this.mapa[i][j];
-                  this.mapa[i][j] = numero;
-                  this.MostrarMapa();
-                  ((Timer)e.getSource()).stop();
-               })).start();
-               return;
+               
+               final int filaActual = i;
+                final int colActual = j;
+
+                (new Timer(500, (e) -> {
+                    int numero = this.mapa[filaActual][colActual - 1];
+                    this.mapa[filaActual][colActual - 1] = this.mapa[filaActual][colActual];
+                    this.mapa[filaActual][colActual] = numero;
+
+                    this.MostrarMapa();
+                    ((Timer)e.getSource()).stop();
+                })).start();
             }
          }
       }
@@ -679,13 +693,18 @@ public class Control2 {
                this.MapaLab[i][j].add((Component)this.animaciones.get(0), "Center");
                this.MapaLab[i][j].revalidate();
                this.MapaLab[i][j].repaint();
-               (new Timer(500, (e) -> {
-                  int numero = this.mapa[i][j + 1];
-                  this.mapa[i][j + 1] = this.mapa[i][j];
-                  this.mapa[i][j] = numero;
-                  this.MostrarMapa();
-                  ((Timer)e.getSource()).stop();
-               })).start();
+               
+               final int filaActual = i;
+                final int colActual = j;
+
+                (new Timer(500, (e) -> {
+                    int numero = this.mapa[filaActual][colActual + 1];
+                    this.mapa[filaActual][colActual + 1] = this.mapa[filaActual][colActual];
+                    this.mapa[filaActual][colActual] = numero;
+
+                    this.MostrarMapa();
+                    ((Timer)e.getSource()).stop();
+                })).start();
                return;
             }
          }
