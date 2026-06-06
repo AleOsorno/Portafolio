@@ -25,23 +25,19 @@ A continuación, pueden explorar las carpetas de los proyectos integrados inclui
 * **Descripción:** Implementación de un juego de rompecabezas de 9 casillas. El núcleo del proyecto destaca por estructurar lógicamente una matriz interactiva y renderizar las casillas utilizando una imagen personalizada en formato Pixel Art mediante código.
 * **Tecnologías:** Lenguaje C, Manejo de matrices, Renderizado de gráficos/Pixel Art.
 
-### 4. Compresor y Descompresor de Archivos de Texto en C
-* **Descripción:** Herramienta de software capaz de codificar y decodificar archivos de texto. Implementa algoritmos de compresión mediante la estructura de datos de Árboles Binarios, manejando la lectura y escritura binaria de archivos.
-* **Tecnologías:** Lenguaje C, Estructuras de Datos Avanzadas (Árboles), Manipulación de Archivos a bajo nivel.
-
-### 5. Videojuego Gráfico de Laberinto, Puzzles y Powerups en Java
+### 4. Videojuego Gráfico de Laberinto, Puzzles y Powerups en Java
 * **Descripción:** Videojuego interactivo que combina mecánicas de exploración de laberintos, resolución de acertijos y lógica de estados para elementos consumibles (power-ups). Desarrollado bajo los fundamentos de la Programación Orientada a Objetos (POO).
 * **Tecnologías:** Java, Interfaz Gráfica (GUI), Lógica de Videojuegos, POO.
 
-### 6. Analista de Datos de League of Legends en Python
+### 5. Analista de Datos de League of Legends en Python
 * **Descripción:** Software diseñado para procesar, limpiar y analizar conjuntos de datos estadísticos relacionados con partidas de League of Legends. Permite extraer patrones de rendimiento, tasas de victoria y métricas clave del juego mediante scripts automatizados.
 * **Tecnologías:** Python, Manipulación y Análisis de Datos.
 
-### 7. Página de Autoservicio Escolar con Base de Datos
+### 6. Página de Autoservicio Escolar con Base de Datos
 * **Descripción:** Aplicación web dinámica diseñada para la gestión escolar. Permite a los usuarios realizar consultas y solicitudes en tiempo real mediante un sistema conectado a una base de datos relacional para el manejo de la información.
 * **Tecnologías:** HTML5, CSS3, JavaScript, Backend Scripting, Bases de Datos Relacionales (SQL).
 
-### 8. Página de Academia Web
+### 7. Página de Academia Web
 * **Descripción:** Sitio web desarrollado como propuesta para una academia escolar. Enfocado completamente en la experiencia de usuario y diseño responsivo adaptable.
 * **Tecnologías:** HTML5, CSS3, JavaScript.
 
