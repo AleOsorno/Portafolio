@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'); /*tipografia SPACE MONO*/
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');/*Lilita one*/
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');/*Patua One*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');/*roboto mono*/
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');/*concert one*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');/*Playfair Display*/
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');/*Lora*/
+
+:root{/*creación de variables para distintos colores de la página*/
+    --color-menu-hover: rgb(238,238,238);
+    --color-menu-hover-texto: rgb(0,0,0);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+
+    header{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+        width: 100%;
+        height: 90px;
+    }
+
+    img.inicios{
+        width: 50px;
+        border-radius: 30px;
+    }
+    
+    nav a{
+        text-decoration: none;
+        display: inline-block;
+        color: white;
+        margin-top: 20px;
+        border-radius: 30px;
+    }
+
+    nav a.posicion{
+        margin: 20px 14.72px;/*posicion del nav*/
+    }
+
+    nav a.posicion span{
+        padding-left: 10px;
+        font-size: 16px;
+    }
+    
+    nav a:hover{
+        background-color: white;
+        color: black;
+    }
+    
+    .contenido_menu{
+       grid-template-columns: 1fr auto;
+       align-items: center;
+       background: rgb(0, 0, 0);
+       font-family: sans-serif;
+       position: fixed;
+       top:0;
+       padding-bottom: 30px;
+       height: 90px;
+       width: 100%;
+       z-index: 1000;/*evitar sobreposición de cosas en la barra de navegación*/
+    }
+    
+    .menu{
+        max-width: 1200px;
+        margin-left: 15px;
+        height: 100%;
+        position: relative;
+        z-index: 2;
+    }
+    
+    nav{
+        height: 100%;
+    }
+    
+    nav > ul{ /*EL SIGNO DE MAYOR QUE ES COMO DECIR QUE LA PROPIEDAD SE APLIQUE DAL UL DESPUES DEL NAV*/
+        height: 100%;
+        display: flex;
+    }
+    
+    nav  ul  li{
+        height: 100%;
+        list-style: none;
+        position: relative;
+    }
+    
+    nav > ul > li > a{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        color: rgb(255, 255, 255);
+        align-items: center; /*ALINEAR AL CENTRO TODO*/
+        padding: 14px; /*ESPACIADO*/
+        text-transform: uppercase; /*TRANSFORMAR EN MAYUSCULAS*/
+        font-size: 14px; /*TAMAÑO DE LETRA*/
+        transition: all 300ms ease;
+    }
+    
+    nav > ul > li > a:hover{/*EVENTO DE NOMBRE HOVER QUE SE REFIERE A CUANDO SE INTERACTUA CON EL ELEMENTO CORRESPONDIENTE*/
+        transform: scale(1.1); /*TRANSFORMARSE EN UNA ESCALA DE 1.1*/
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);/*SOMBRA DE FONDO CUANDO INTERACTUAMOS CON EL ELEMENTO*/
+    }
+    
+    nav ul li ul{
+        width: 200px;
+        display: flex;
+        flex-direction: column;/*QUE EL SUBMENU VAYA EN COLUMNA*/
+        background-color: rgb(0, 162, 255);
+        position: absolute; /*posicion absoluta*/
+        top: 90px;
+        left: -4px;
+        padding: 14px 0px 0px 0px;
+        visibility: hidden; /*OCULTO*/
+        opacity: 0;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+        z-index: 10;
+        transition: all 300ms
+    }
+    
+    nav ul li:hover ul{
+        visibility: visible;
+        opacity: 1;
+        top: 70px;
+    }
+    
+    nav ul li ul:before{
+        content: white;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid white;
+        position: absolute;
+        top: -12px;
+        left: 20px;   
+    }
+    
+    nav ul li ul li a{
+        display: block;
+        color: rgb(255, 255, 255);
+        padding: 6px;
+        padding-left: 14px;
+        margin-top: 10px;
+        font-size: 14px;
+        text-transform: uppercase;
+        transition: all 300ms;
+    }
+    
+    nav ul li ul li a:hover{
+        background-color: rgb(255, 166, 0);
+        color: black;
+        transform: scale(1.1);
+        padding-left: 30px;
+        font-size: 14px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    }
+
+    /*texto*/
+    
+    #inicio{
+        background-color: var(--color-menu-hover);
+        color: var(--color-menu-hover-texto);
+    }

@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'); /*tipografia SPACE MONO*/
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');/*Lilita one*/
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');/*Patua One*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');/*roboto mono*/
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');/*concert one*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');/*Playfair Display*/
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');/*Lora*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+}
+
+.portada2 img{
+    width: 100%;
+    height: 650px;
+}
+
+section.s2{
+    background-color: rgb(224, 176, 0);
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    height: 70px;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding-top: 25px;
+    font-size: 30px;
+}
+
+.body2{
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 250vh;
+    align-items: center;
+    background-color: rgb(224, 176, 0);
+}
+
+.contProy{
+    display: flex;
+    justify-content: center;
+}
+
+.cardProy{
+    height: 500px;
+    width: 350px;
+    margin: 50px;
+    box-shadow: 5px 5px 20px black;
+    overflow: hidden;
+    position: relative; 
+}
+
+.img1{
+    height: 500px;
+    width: 350px;
+    transition: .5s ease;
+    border-radius: 3px;
+}
+
+.introProy{
+    height: 70px;
+    width: 350px;
+    padding: 6px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: -600px;
+    background-color: rgba(67, 45, 25, 0.5);
+    color: white;
+    transition: 0.5s all;
+    overflow: hidden;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+}
+
+.introProy h1{
+    margin: 10px;
+    font-size: 40px;
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.introProy p{
+    font-size: 20px;
+    font-family: "Concert One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 20px;
+    visibility: hidden;
+    opacity: 0;
+    overflow: auto; 
+}
+
+.cardProy:hover{
+    cursor: pointer;
+}
+
+.cardProy:hover .introProy{
+    height: 220px;
+    bottom: 0; 
+    background: rgb(49, 29, 12);
+}
+
+.cardProy:hover p{
+    visibility: visible;
+    opacity: 1;
+}
+
+.cardProy:hover .img1{
+    transform: scale(1.1);
+}
