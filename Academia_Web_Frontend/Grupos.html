@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Grupos de Ayuda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .contenido_seccion {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        .lista_foros {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lista_foros li {
+            margin-bottom: 10px;
+        }
+
+        .lista_foros li a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .lista_foros li a:hover {
+            text-decoration: none;
+            background-color: #e9e9e9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .inicios {
+            height: 40px;
+            width: auto;
+        }
+
+        .posicion {
+            display: flex;
+            align-items: center;
+        }
+
+        .posicion ion-icon {
+            margin-right: 5px;
+        }
+
+        h1 {
+            margin: 40px;
+            text-align: center;
+            font-family: "Lilita One", sans-serif;
+            font-weight: 400;
+            font-size: 60px;
+            font-style: normal;
+            background-color: rgb(250, 206, 10);
+            color: rgb(0, 0, 0);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Redes Sociales */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            font-size: 40px;
+            color: #000;
+            margin: 0 15px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: #0073e6;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+        /*Galeria*/
+        :root {
+            --color-menu-hover: rgb(238,238,238);
+            --color-menu-hover-texto: rgb(0,0,0);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        body.indicadores {
+            background: url('file:///E:/proyectoFinal/proyecto-final/css/imagenes2/fondoGalerias.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        body.videos {
+            background: url('file:///E:/proyectoFinal/proyecto-final/css/imagenes2/fondoVideos.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        body.galeria {
+            background: url('file:///E:/proyectoFinal/proyecto-final/css/imagenes2/fondo3.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        header {
+            background-color: #000;
+            text-align: center;
+            width: 100%;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img.inicios {
+            width: 50px;
+            border-radius: 30px;
+        }
+
+        h1, h3 {
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Lilita One', sans-serif;
+        }
+
+        h1 {
+            margin: 40px;
+            text-align: center;
+            font-family: "Lilita One", sans-serif;
+            font-weight: 400;
+            font-size: 60px;
+            font-style: normal;
+            background-color: rgb(250, 206, 10);
+            color: rgb(0, 0, 0);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #333;
+            font-family: 'Patua One', serif;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            position: relative;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .gallery-images {
+            position: relative;
+            height: 600px;
+        }
+
+        .gallery-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-image img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
+            margin: 10%;
+        }
+
+        .gallery-image .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 1em;
+            border-radius: 0 0 15px 15px;
+            transform: translateY(0);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+
+        .gallery-image:hover .caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .gallery-controls label {
+            font-size: 2em;
+            color: #333;
+            cursor: pointer;
+            margin: 0 10px;
+            user-select: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .gallery-controls label:hover {
+            color: #666;
+        }
+
+        /* Videos */
+        main {
+            padding: 20px;
+        }
+
+        .video-gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .video-gallery h1 {
+            font-family: 'Lilita One', sans-serif;
+            color: #333;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .video-item {
+            background: url('file:///E:/proyectoFinal/proyecto-final/css/imagenes2/fondoVideos.webp') no-repeat center center fixed;
+            background-size: cover;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+        }
+
+        .video-item h3 {
+            font-family: 'Space Mono', monospace;
+            color: #333;
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Indicadores */
+        .seccion-imagenes {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .lista-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lista-item {
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .lista-item-large {
+            grid-column: span 2;
+        }
+
+        .lista-item h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .lista-item-text {
+            background-color: #FFD700;
+            color: #000;
+            padding: 20px;
+        }
+
+        .imagenes-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .imagen-item img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 10px;
+        }
+
+        .explicacion-texto {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #333;
+            font-family: 'Roboto Mono', monospace;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        #lightbox {
+            position: fixed;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        #lightbox.active {
+            display: flex;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+        }
+
+        .lightbox:target {
+            display: block;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .gallery-images {
+                height: 400px;
+            }
+
+            .gallery-image img {
+                width: 90%;
+                height: 90%;
+                margin: 5%;
+            }
+
+            .lista-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lista-item-large {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="contenido_menu">
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html">
+                                <!--<ion-icon class="inicios" name="aperture-outline"></ion-icon>-->
+                                <img class="inicios" src="css/imgale/LOGO ATIT.jpg">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>Carreras</span>
+                            </a>
+                            <ul>
+                                <li><a href="ITI.html">Ing. Tecnologías de la Información</a></li>
+                                <li><a href="ITEM.html">Ing. Telemática</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Personal.html">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span>Personal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Residencias.html">
+                                <ion-icon name="mail-unread-outline"></ion-icon>
+                                <span>Residencias</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Proyectos.html">
+                                <ion-icon name="location-outline"></ion-icon>
+                                <span>Proyectos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Videos.html">
+                                <ion-icon name="stop-circle-outline"></ion-icon>
+                                <span>Videos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Indicadores.html">
+                                <ion-icon name="checkmark-outline"></ion-icon>
+                                <span>Indicadores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="easel-outline"></ion-icon>
+                                <span>Interacción</span>
+                            </a>
+                            <ul>
+                                <li><a href="Blog.html">Blog</a></li>
+                                <li><a href="Contacto.html">Contacto</a></li>
+                                <li><a href="Cuestionario.html">Cuestionario</a></li>
+                                <li><a href="Chat.html">Chat</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Galeria.html">
+                                <ion-icon name="save-outline"></ion-icon>
+                                <span>Galería</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="inicio" class="posicion" href="#">
+                                <ion-icon name="construct-outline"></ion-icon>
+                                <span>Ayuda</span>
+                            </a>
+                            <ul>
+                                <li><a href="Preguntas.html">Preguntas</a></li>
+                                <li><a href="#">Grupos</a></li>
+                                <li><a href="Redes.html">Redes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Grupos</h1>
+        <section id="foros" class="contenido_seccion">
+            <h2>Foros de Programadores Web</h2>
+            <ul class="lista_foros">
+                <li><a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a></li>
+                <li><a href="https://www.reddit.com/r/webdev/" target="_blank">Reddit - WebDev</a></li>
+                <li><a href="https://www.sitepoint.com/community/" target="_blank">SitePoint</a></li>
+                <li><a href="https://www.digitalocean.com/community/" target="_blank">DigitalOcean Community</a></li>
+                <li><a href="https://forum.freecodecamp.org/" target="_blank">freeCodeCamp Forum</a></li>
+                <li><a href="https://www.facebook.com/groups/515934255534316/" target="_blank">PolicosasPerdidas</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/java/script.js"></script>
+</body>
+</html>

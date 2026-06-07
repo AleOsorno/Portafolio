@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+       
+       .social-media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            font-size: 40px;
+            color: #000;
+            margin: 0 15px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: #0073e6; 
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap'); 
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Roboto Mono', monospace;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.indicadores {
+            background: url('file:///E:/proyectoFinal/proyecto-final/css/imagenes2/fondoGalerias.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        body.videos {
+            background: url('file:///E:/proyectoFinal/proyecto-final/css/imagenes2/fondoVideos.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        body.galeria {
+            background: url('file:///E:/proyectoFinal/proyecto-final/css/imagenes2/fondo3.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        header {
+            background-color: #000;
+            text-align: center;
+            width: 100%;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img.inicios{
+            width: 50px;
+            border-radius: 30px;
+        }
+
+        h1, h3 {
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Lilita One', sans-serif;
+        }
+
+        h1 {
+            margin: 40px;
+            text-align: center;
+            font-family: "Lilita One", sans-serif;
+            font-weight: 400;
+            font-size: 60px;
+            font-style: normal;
+            background-color: rgb(250, 206, 10);
+            color: rgb(0, 0, 0);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #333;
+            font-family: 'Patua One', serif;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            color: #333;
+            font-family: 'Space Mono', monospace;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .contenido_seccion {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        form input[type="text"], form textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .gallery-images {
+                height: 400px; 
+            }
+
+            .gallery-image img {
+                width: 90%; 
+                height: 90%; 
+                margin: 5%;
+            }
+
+            .lista-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lista-item-large {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="contenido_menu">
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html">
+                                <!--<ion-icon class="inicios" name="aperture-outline"></ion-icon>-->
+                                <img class="inicios" src="css/imgale/LOGO ATIT.jpg">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>Carreras</span>
+                            </a>
+                            <ul>
+                                <li><a href="ITI.html">Ing. Tecnologías de la Información</a></li>
+                                <li><a href="ITEM.html">Ing. Telemática</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Personal.html">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span>Personal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Residencias.html">
+                                <ion-icon name="mail-unread-outline"></ion-icon>
+                                <span>Residencias</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Proyectos.html">
+                                <ion-icon name="location-outline"></ion-icon>
+                                <span>Proyectos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Videos.html">
+                                <ion-icon name="stop-circle-outline"></ion-icon>
+                                <span>Videos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Indicadores.html">
+                                <ion-icon name="checkmark-outline"></ion-icon>
+                                <span>Indicadores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="inicio" class="posicion" href="#">
+                                <ion-icon name="easel-outline"></ion-icon>
+                                <span>Interacción</span>
+                            </a>
+                            <ul>
+                                <li><a href="Blog.html">Blog</a></li>
+                                <li><a href="Contacto.html">Contacto</a></li>
+                                <li><a href="#">Cuestionario</a></li>
+                                <li><a href="Chat.html">Chat</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Galeria.html">
+                                <ion-icon name="save-outline"></ion-icon>
+                                <span>Galería</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="construct-outline"></ion-icon>
+                                <span>Ayuda</span>
+                            </a>
+                            <ul>
+                                <li><a href="Preguntas.html">Preguntas</a></li>
+                                <li><a href="Grupos.html">Grupos</a></li>
+                                <li><a href="Redes.html">Redes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Cuestionario de Diagnóstico</h1>
+        <section class="contenido_seccion">
+            <form id="cuestionarioForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+
+                <label for="conocimientos">Describe tus conocimientos previos sobre los objetivos de las carreras de ATIT:</label>
+                <textarea id="conocimientos" name="conocimientos" rows="4" required></textarea>
+
+                <label for="mision">¿Cuál crees que es la misión del departamento de ATIT?</label>
+                <textarea id="mision" name="mision" rows="4" required></textarea>
+
+                <label for="vision">¿Cuál crees que es la visión del departamento de ATIT?</label>
+                <textarea id="vision" name="vision" rows="4" required></textarea>
+
+                <button type="submit">Generar PDF</button>
+            </form>
+        </section>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/java/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script>
+        document.getElementById('cuestionarioForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const conocimientos = document.getElementById('conocimientos').value;
+            const mision = document.getElementById('mision').value;
+            const vision = document.getElementById('vision').value;
+
+            doc.text('Cuestionario de Diagnóstico', 20, 20);
+            doc.text(`Nombre: ${nombre}`, 20, 30);
+            doc.text(`Email: ${email}`, 20, 40);
+            doc.text('Conocimientos Previos:', 20, 50);
+            doc.text(conocimientos, 20, 60);
+            doc.text('Misión:', 20, 80);
+            doc.text(mision, 20, 90);
+            doc.text('Visión:', 20, 110);
+            doc.text(vision, 20, 120);
+
+            doc.save('cuestionario_diagnostico.pdf');
+        });
+    </script>
+</body>
+</html>

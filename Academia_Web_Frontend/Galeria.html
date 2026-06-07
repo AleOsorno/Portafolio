@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos2.css">
+</head>
+<script>
+let currentIndex = 1;
+const totalImages = 6;
+
+function showImage(index) {
+  const images = document.querySelectorAll('.gallery-image');
+  images.forEach((img, i) => {
+    img.style.display = i === index - 1 ? 'block' : 'none';
+  });
+}
+
+function nextImage() {
+  currentIndex = (currentIndex % totalImages) + 1;
+  showImage(currentIndex);
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 2 + totalImages) % totalImages + 1;
+  showImage(currentIndex);
+}
+
+window.onload = function() {
+  showImage(currentIndex);
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+    const lightbox = document.createElement("div");
+    lightbox.id = "lightbox";
+    document.body.appendChild(lightbox);
+
+    const images = document.querySelectorAll('.gallery-image a');
+    images.forEach(image => {
+        image.addEventListener('click', e => {
+            e.preventDefault();
+            lightbox.classList.add('active');
+            const img = document.createElement('img');
+            img.src = image.href;
+            while (lightbox.firstChild) {
+                lightbox.removeChild(lightbox.firstChild);
+            }
+            lightbox.appendChild(img);
+        });
+    });
+
+    lightbox.addEventListener('click', e => {
+        if (e.target !== e.currentTarget) return;
+        lightbox.classList.remove('active');
+    });
+});
+</script>
+<body class="galeria">
+    <header>
+        <div class="contenido_menu">
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a id="inicio" href="index.html">
+                            <img class="inicios" src="css/imgale/LOGO ATIT.jpg">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>Carreras</span>
+                            </a>
+                            <ul>
+                                <li><a href="ITI.html">Ing. Tecnologías de la Información</a></li>
+                                <li><a href="ITEM.html">Ing. Telemática</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Personal.html">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span>Personal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Residencias.html">
+                                <ion-icon name="mail-unread-outline"></ion-icon>
+                                <span>Residencias</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Proyectos.html">
+                                <ion-icon name="location-outline"></ion-icon>
+                                <span>Proyectos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Videos.html">
+                                <ion-icon name="stop-circle-outline"></ion-icon>
+                                <span>Videos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Indicadores.html">
+                                <ion-icon name="checkmark-outline"></ion-icon>
+                                <span>Indicadores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="easel-outline"></ion-icon>
+                                <span>Interacción</span>
+                            </a>
+                            <ul>
+                                <li><a href="Blog.html">Blog</a></li>
+                                <li><a href="Contacto.html">Contacto</a></li>
+                                <li><a href="Cuestionario.html">Cuestionario</a></li>
+                                <li><a href="Chat.html">Chat</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="save-outline"></ion-icon>
+                                <span>Galería</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="construct-outline"></ion-icon>
+                                <span>Ayuda</span>
+                            </a>
+                            <ul>
+                                <li><a href="Preguntas.html">Preguntas</a></li>
+                                <li><a href="Grupos.html">Grupos</a></li>
+                                <li><a href="Redes.html">Redes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <h1>Galería de ATIT</h1>
+    <h3>¡Aquí se muestran distintas actividades hechas en ATIT!</h3>
+    
+    <div class="gallery-container">
+        <div class="gallery-images">
+            <div class="gallery-image">
+                <a href="css/imagenes2/egresados.jpg" data-lightbox="gallery">
+                    <img src="css/imagenes2/egresados.jpg" alt="Conferencia de Egresados">
+                    <div class="caption">
+                        <h4>Conferencia de Egresados</h4>
+                        <p>¡Una conferencia de los estudiantes ya egresados, dando consejos y experiencias a los nuevos!</p>
+                    </div>
+                </a>
+            </div>
+            <div class="gallery-image">
+                <a href="css/imagenes2/itiExperience.jpg" data-lightbox="gallery">
+                    <img src="css/imagenes2/itiExperience.jpg" alt="ITI Experience">
+                    <div class="caption">
+                        <h4>ITI Experience</h4>
+                        <p>Una experiencia inolvidable para los estudiantes de ITI.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="gallery-image">
+                <a href="css/imagenes2/visita.jpg" data-lightbox="gallery">
+                    <img src="css/imagenes2/visita.jpg" alt="Visita Técnica">
+                    <div class="caption">
+                        <h4>Visita Técnica</h4>
+                        <p>Visita a una empresa tecnológica para aprender de primera mano.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="gallery-image">
+                <a href="css/imagenes2/actividadChicos.jpg" data-lightbox="gallery">
+                    <img src="css/imagenes2/actividadChicos.jpg" alt="Actividad">
+                    <div class="caption">
+                        <h4>Actividad de Ingreso</h4>
+                        <p>Nuevos alumnos pasando el rato</p>
+                    </div>
+                </a>
+            </div>
+            <div class="gallery-image">
+                <a href="css/imagenes2/conferenciaTecnologia.jpg" data-lightbox="gallery">
+                    <img src="css/imagenes2/conferenciaTecnologia.jpg" alt="Conferencia">
+                    <div class="caption">
+                        <h4>Conferencia de Maestrías</h4>
+                        <p>Conferencia a los alumnos de maestrías en tecnología</p>
+                    </div>
+                </a>
+            </div>
+            <div class="gallery-image">
+                <a href="css/imagenes2/primerContacto.jpg" data-lightbox="gallery">
+                    <img src="css/imagenes2/primerContacto.jpg" alt="Primer Contacto">
+                    <div class="caption">
+                        <h4>Primer Contacto</h4>
+                        <p>Ingreso de nuevos alumnos de ITI (nosotros).</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    
+        <div class="gallery-controls">
+            <label class="prev" onclick="prevImage()">&#10094;</label>
+            <label class="next" onclick="nextImage()">&#10095;</label>
+        </div>
+    </div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="js/lightbox.js"></script>
+</body>
+</html>

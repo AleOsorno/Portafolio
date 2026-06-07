@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            margin: 40px;
+            text-align: center;
+            font-family: "Lilita One", sans-serif;
+            font-weight: 400;
+            font-size: 60px;
+            font-style: normal;
+            background-color: rgb(250, 206, 10);
+            color: rgb(0, 0, 0);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .contenido_seccion {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        .faq {
+            list-style: none;
+            padding: 0;
+        }
+
+        .faq li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .faq li button {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        .faq li button:hover {
+            background-color: #f9f9f9;
+        }
+
+        .faq li div {
+            display: none;
+            padding: 15px;
+            font-size: 16px;
+            background-color: #f4f4f4;
+        }
+
+        .faq li.active div {
+            display: block;
+        }
+
+        .inicios {
+            height: 40px;
+            width: auto;
+        }
+
+        .posicion {
+            display: flex;
+            align-items: center;
+        }
+
+        .posicion ion-icon {
+            margin-right: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="contenido_menu">
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html">
+                                <!--<ion-icon class="inicios" name="aperture-outline"></ion-icon>-->
+                                <img class="inicios" src="css/imgale/LOGO ATIT.jpg">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>Carreras</span>
+                            </a>
+                            <ul>
+                                <li><a href="ITI.html">Ing. Tecnologías de la Información</a></li>
+                                <li><a href="ITEM.html">Ing. Telemática</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Personal.html">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span>Personal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Residencias.html">
+                                <ion-icon name="mail-unread-outline"></ion-icon>
+                                <span>Residencias</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Proyectos.html">
+                                <ion-icon name="location-outline"></ion-icon>
+                                <span>Proyectos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Videos.html">
+                                <ion-icon name="stop-circle-outline"></ion-icon>
+                                <span>Videos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Indicadores.html">
+                                <ion-icon name="checkmark-outline"></ion-icon>
+                                <span>Indicadores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="easel-outline"></ion-icon>
+                                <span>Interacción</span>
+                            </a>
+                            <ul>
+                                <li><a href="Blog.html">Blog</a></li>
+                                <li><a href="Contacto.html">Contacto</a></li>
+                                <li><a href="Cuestionario.html">Cuestionario</a></li>
+                                <li><a href="Chat.html">Chat</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Galeria.html">
+                                <ion-icon name="save-outline"></ion-icon>
+                                <span>Galería</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="inicio" class="posicion" href="#">
+                                <ion-icon name="construct-outline"></ion-icon>
+                                <span>Ayuda</span>
+                            </a>
+                            <ul>
+                                <li><a href="#">Preguntas</a></li>
+                                <li><a href="Grupos.html">Grupos</a></li>
+                                <li><a href="Redes.html">Redes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Preguntas Frecuentes</h1>
+        <section id="faq" class="contenido_seccion">
+            <h2>Preguntas sobre el Departamento de ATIT - UPSLP</h2>
+            <ul class="faq">
+                <li>
+                    <button onclick="toggleFaq(this)">¿Qué es el Departamento de ATIT?</button>
+                    <div>
+                        <p>El Departamento de Tecnologías de la Información y Comunicaciones (ATIT) de la UPSLP se dedica a la formación de profesionales en el área de tecnologías de la información, ofreciendo programas de grado y actividades de investigación.</p>
+                    </div>
+                </li>
+                <li>
+                    <button onclick="toggleFaq(this)">¿Cuáles son las carreras ofrecidas por el departamento?</button>
+                    <div>
+                        <p>El departamento ofrece carreras como Ingeniería en Tecnologías de la Información e Ingeniería en Telemática, enfocadas en el desarrollo de habilidades y conocimientos en áreas clave de TI.</p>
+                    </div>
+                </li>
+                <li>
+                    <button onclick="toggleFaq(this)">¿Cómo puedo contactar al departamento?</button>
+                    <div>
+                        <p>Puede contactar al departamento a través del correo electrónico oficial del UPSLP o visitando nuestras oficinas en el campus de San Luis Potosí.</p>
+                    </div>
+                </li>
+                <li>
+                    <button onclick="toggleFaq(this)">¿Qué proyectos de investigación se realizan en el departamento?</button>
+                    <div>
+                        <p>El departamento participa en una variedad de proyectos de investigación en áreas como inteligencia artificial, redes de comunicación, y desarrollo de software, colaborando con la industria y otras instituciones académicas.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/java/script.js"></script>
+    <script>
+        function toggleFaq(element) {
+            var parent = element.parentElement;
+            parent.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

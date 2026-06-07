@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicadores</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos2.css">
+</head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const lightbox = document.createElement("div");
+    lightbox.id = "lightbox";
+    document.body.appendChild(lightbox);
+
+    const images = document.querySelectorAll('.imagen-item img');
+    images.forEach(image => {
+        image.addEventListener('click', e => {
+            lightbox.classList.add('active');
+            const img = document.createElement('img');
+            img.src = image.src;
+            while (lightbox.firstChild) {
+                lightbox.removeChild(lightbox.firstChild);
+            }
+            lightbox.appendChild(img);
+        });
+    });
+
+    lightbox.addEventListener('click', e => {
+        if (e.target !== e.currentTarget) return;
+        lightbox.classList.remove('active');
+    });
+});
+</script>
+<body class="indicadores">
+    <header>
+        <div class="contenido_menu">
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html">
+                            <!--<ion-icon class="inicios" name="aperture-outline"></ion-icon>-->
+                            <img class="inicios" src="css/imgale/LOGO ATIT.jpg">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>Carreras</span>
+                            </a>
+                            <ul>
+                                <li><a href="ITI.html">Ing. Tecnologías de la Información</a></li>
+                                <li><a href="ITEM.html">Ing. Telemática</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Personal.html">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span>Personal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Residencias.html">
+                                <ion-icon name="mail-unread-outline"></ion-icon>
+                                <span>Residencias</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Proyectos.html">
+                                <ion-icon name="location-outline"></ion-icon>
+                                <span>Proyectos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Videos.html">
+                                <ion-icon name="stop-circle-outline"></ion-icon>
+                                <span>Videos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a id="inicio" class="posicion" href="#">
+                                <ion-icon name="checkmark-outline"></ion-icon>
+                                <span>Indicadores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="easel-outline"></ion-icon>
+                                <span>Interacción</span>
+                            </a>
+                            <ul>
+                                <li><a href="Blog.html">Blog</a></li>
+                                <li><a href="Contacto.html">Contacto</a></li>
+                                <li><a href="Cuestionario.html">Cuestionario</a></li>
+                                <li><a href="Chat.html">Chat</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="posicion" href="Galeria.html">
+                                <ion-icon name="save-outline"></ion-icon>
+                                <span>Galería</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="posicion" href="#">
+                                <ion-icon name="construct-outline"></ion-icon>
+                                <span>Ayuda</span>
+                            </a>
+                            <ul>
+                                <li><a href="Preguntas.html">Preguntas</a></li>
+                                <li><a href="Grupos.html">Grupos</a></li>
+                                <li><a href="Redes.html">Redes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="seccion-imagenes">
+            <h1>Indicadores</h1>
+            <h4>Número de egresados: 605</h4>
+        </section>
+
+        <section class="seccion-lista">
+            <div class="lista-grid">
+                <div class="lista-item" style="background-color: #FF5733;">
+                    <h3>Certificaciones</h3>
+                    <div class="imagenes-row">
+                        <a href="css/imagenes2/certificaciones.PNG" data-lightbox="certificaciones" class="imagen-item">
+                            <img src="css/imagenes2/certificaciones.PNG" alt="Imagen 1 Indicadores">
+                        </a>
+                        <a href="css/imagenes2/certificaciones2.PNG" data-lightbox="certificaciones" class="imagen-item">
+                            <img src="css/imagenes2/certificaciones2.PNG" alt="Imagen 2 Indicadores">
+                        </a>
+                        <a href="css/imagenes2/certificacionesPosibles.PNG" data-lightbox="certificaciones" class="imagen-item">
+                            <img src="css/imagenes2/certificacionesPosibles.PNG" alt="Imagen 3 Indicadores">
+                        </a>
+                        <a href="css/imagenes2/certificacionesCIEES.PNG" data-lightbox="certificaciones" class="imagen-item">
+                            <img src="css/imagenes2/certificacionesCIEES.PNG" alt="Imagen 4 Indicadores">
+                        </a>
+                    </div>
+                    <p class="explicacion-texto">Estas son las certificaciones que los alumnos pueden realizar para el dominio de ciertas habilidades y conocimientos técnicos en un área específica. Aquí se muestran diferentes certificaciones obtenidas por nuestros alumnos y posibles certificaciones futuras.</p>
+                </div>
+                <div class="lista-item lista-item-large" style="background-color: #33FF57;">
+                    <h3>Concursos</h3>
+                    <div class="imagenes-row">
+                        <a href="css/imagenes2/concursos.PNG" data-lightbox="concursos" class="imagen-item">
+                            <img src="css/imagenes2/concursos.PNG" alt="Imagen 5 Indicadores">
+                        </a>
+                    </div>
+                    <p class="explicacion-texto">Concursos en los que se ha destacado el alumno</p>
+                </div>
+                <div class="lista-item" style="background-color: #3357FF;">
+                    <h3>Casos de éxito o alumnos destacados</h3>
+                    <div class="imagenes-row">
+                        <a href="css/imagenes2/destacados.PNG" data-lightbox="destacados" class="imagen-item">
+                            <img src="css/imagenes2/destacados.PNG" alt="Imagen 6 Indicadores">
+                        </a>
+                    </div>
+                    <p class="explicacion-texto">Los casos de éxito que destacan a alumnos que han logrado resultados excepcionales en sus estudios o en su carrera profesional. Aquí se presentan algunos de los alumnos más destacados y sus logros.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="js/lightbox.js"></script>
+</body>
+</html>
