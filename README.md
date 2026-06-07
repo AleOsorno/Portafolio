@@ -35,7 +35,7 @@ A continuación, pueden explorar las carpetas de los proyectos integrados inclui
 
 ### 6. Página de Autoservicio Escolar con Base de Datos
 * **Descripción:** Aplicación web dinámica diseñada para la gestión escolar. Permite a los usuarios realizar consultas y solicitudes en tiempo real mediante un sistema conectado a una base de datos relacional para el manejo de la información.
-* **Tecnologías:** HTML5, CSS3, JavaScript, Backend Scripting, Bases de Datos Relacionales (SQL).
+* **Tecnologías:** HTML5, CSS3, JavaScript, Backend, Bases de Datos (SQL).
 
 ### 7. Página de Academia Web
 * **Descripción:** Sitio web desarrollado como propuesta para una academia escolar. Enfocado completamente en la experiencia de usuario y diseño responsivo adaptable.
