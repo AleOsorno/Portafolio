@@ -6,7 +6,7 @@ En este repositorio se encuentran los proyectos que he desarrollado a lo largo d
 
 # Herramientas Destacadas
 * **Hardware & Embebidos:** ESP32, ESP32-C3, ESP32-S3, Microcontroladores PIC (16F877A / 16F84), Sensores, Servomotores, Circuitos de Potencia.
-* **Lenguajes de Programación:** C, Java, Python, JavaScript, HTML5, CSS3, SQL.
+* **Lenguajes de Programación:** C, C++, Java, Python, JavaScript, HTML5, CSS3, SQL.
 * **Software:** Microsoft Excel, PowerPoint, Word.
 
 ## Proyectos Destacados
@@ -15,13 +15,13 @@ A continuación, pueden explorar las carpetas de los proyectos integrados inclui
 
 ### 1. Dron con ESP32-C3
 * **Descripción:** Proyecto integrador universitario enfocado en el diseño, ensamblaje y calibración de un dron controlado mediante el microcontrolador ESP32-C3. Implementa lógica de control para motores, lectura de sensores en tiempo real y configuración de circuitos.
-* **Tecnologías:** C, ESP32-C3, Protocolos de conectividad, Sensores de estabilidad.
+* **Tecnologías:** C++, ESP32-C3, Protocolos de conectividad, Sensores de estabilidad.
 
 ### 2. Robot Seguidor de Líneas con PIC
-* **Descripción:** Realizado para la materia de Arquitectura de Computadoras. Consiste en un vehículo programado que procesa señales mediante sensores para realizar un seguimiento de trayectoria con el puente H y motores.
+* **Descripción:** Realizado para la materia de Arquitectura de Computadoras. Consiste en un vehículo programado que procesa señales mediante sensores para realizar un seguimiento de trayectoria mediante el puente H y motores.
 * **Tecnologías:** C, PIC16F877A, Motores DC, Sensores.
 
-### 3. Juego de Rompecabezas hecho con Pixel Art y C
+### 3. Juego de Puzzle hecho con Pixel Art y C
 * **Descripción:** Implementación de un juego de rompecabezas de 9 casillas. El núcleo del proyecto destaca por estructurar lógicamente una matriz interactiva y renderizar las casillas utilizando una imagen personalizada en formato Pixel Art mediante código.
 * **Tecnologías:** Lenguaje C, Manejo de matrices, Renderizado de gráficos/Pixel Art.
 
@@ -37,7 +37,7 @@ A continuación, pueden explorar las carpetas de los proyectos integrados inclui
 * **Descripción:** Aplicación web dinámica diseñada para la gestión escolar. Permite a los usuarios realizar consultas y solicitudes en tiempo real mediante un sistema conectado a una base de datos relacional para el manejo de la información.
 * **Tecnologías:** HTML5, CSS3, JavaScript, Backend, Bases de Datos (SQL).
 
-### 7. Página de Academia Web
+### 7. Página de Academia Web Frontend
 * **Descripción:** Sitio web desarrollado como propuesta para una academia escolar. Enfocado completamente en la experiencia de usuario y diseño responsivo adaptable.
 * **Tecnologías:** HTML5, CSS3, JavaScript.
 
@@ -46,4 +46,4 @@ A continuación, pueden explorar las carpetas de los proyectos integrados inclui
 * **Productividad:** Certificaciones oficiales en Microsoft Excel, PowerPoint y Word.
 
 ## Contacto
-* **Ubicación:** San Luis Potosí, S.L.P, México
+* **Ubicación:** San Luis Potosí, S.L.P., México
